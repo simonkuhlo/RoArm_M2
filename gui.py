@@ -7,7 +7,7 @@ root = tk.Tk()
 default_font = font.nametofont("TkFixedFont")
 default_font.configure(size=10)
 root.option_add("*Font", default_font)
-
+root.minsize(width=950, height=500)
 test = tk.Label(root, text="Hallo!")
 test.pack()
 
