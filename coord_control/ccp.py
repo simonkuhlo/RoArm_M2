@@ -2,14 +2,14 @@ import tkinter as tk
 from . import cs
 
 class CoordControlPanel:
-    def __init__(self, root, name:str, axs1, axs2, controller=None):
+    def __init__(self, root, name:str, axs, controller=None):
         
         self.frame = tk.Frame(root, borderwidth=1, relief='groove', padx=3, pady=3)
         
         self.label = tk.Label(self.frame, text=name)
         
         self.canvas = tk.Canvas(self.frame, borderwidth=5, relief='sunken')
-        self.CSystem:cs.CoordSystem = cs.CoordSystem(self.canvas, axs1, axs2)
+        self.CSystem:cs.CoordSystem = cs.CoordSystem(self.canvas, axs[0], axs[1])
     
         self.button_right = tk.Button(self.frame, text="->", command=self.on_button_right)
         self.button_left = tk.Button(self.frame, text="<-", command=self.on_button_left)

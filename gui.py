@@ -3,12 +3,13 @@ from tkinter import ttk
 from tkinter import font
 from coord_control import ccm
 
-
-
 root = tk.Tk()
 default_font = font.nametofont("TkFixedFont")
 default_font.configure(size=10)
 root.option_add("*Font", default_font)
+
+test = tk.Label(root, text="Hallo!")
+test.pack()
 
 tabControl = ttk.Notebook(root)
 
