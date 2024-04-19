@@ -1,4 +1,4 @@
-import coord_control.settings_cs as settings_cs
+import coord_control_1.settings_cs as settings_cs
 import math
 import tkinter as tk
 
