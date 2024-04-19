@@ -4,7 +4,7 @@ import threading
 
 class CtrlSerial:
     movement_style = 0 #0=on axis update 1=manual trigger
-    status = 0 #0=off 1=paused 2=running
+    status = 0 #0=off 10=setup 100=paused 200=running
 
     axsX = axisVariable.AxisVariable("AxisX", 100)
     axsY = axisVariable.AxisVariable("AxisY", 100)
@@ -16,7 +16,7 @@ class CtrlSerial:
         self.setup()
 
     def setup(self):
-        if self.status != 0:
+        if self.status == 0:
             self.ser = serial.Serial(self.port, baudrate=115200, dsrdtr=None)
             self.ser.setRTS(False)
             self.ser.setDTR(False)
@@ -36,8 +36,9 @@ class CtrlSerial:
 
     def activate(self):
         if self.status == 0:
+            self.status = 10
             self.setup()
-        self.status = 2
+        self.status = 200
 
 
     def update(self, axs:int, value:int):
@@ -46,7 +47,7 @@ class CtrlSerial:
             self.move()
     
     def move(self):
-        if self.status == 2:
+        if self.status == 200:
             command = {"T":104,"x":self.axsX.get(),"y":self.axsY.get(),"z":self.axsZ.get(),"t":3.14,"spd":0.25}
             self.write_serial(f'{command}')
     
