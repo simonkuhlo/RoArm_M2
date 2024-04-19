@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import font
-from coord_control import ccm
+from coord_control_1 import ccm
+from controller import v2
 
 root = tk.Tk()
 default_font = font.nametofont("TkFixedFont")
@@ -10,13 +11,14 @@ root.option_add("*Font", default_font)
 root.minsize(width=950, height=500)
 test = tk.Label(root, text="Hallo!")
 test.pack()
-
 tabControl = ttk.Notebook(root)
-
 tab1 = ttk.Frame(tabControl)
 coordControlFrame = tk.Frame(tab1, padx=20, pady=20)
 coordControlFrame.pack()
-CoordControlMaster = ccm.CoordControlMaster(coordControlFrame)
+
+
+controller = v2.CtrlSerial("COM3")
+CoordControlMaster = ccm.CoordControlMaster(coordControlFrame, controller=controller)
 tabControl.add(tab1, text ='1')
 
 
